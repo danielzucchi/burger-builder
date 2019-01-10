@@ -1,3 +1,3 @@
 # Burger Builder
 
-A buurger ordering web-app built for learning React principles.
+A burger ordering web-app built for learning React principles.
