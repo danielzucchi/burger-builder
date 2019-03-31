@@ -77,39 +77,15 @@ class BurgerBuilder extends Component {
   }
 
   purchaseContinueHandler = () => {
-    // this.setState({
-    //   loading: true
-    // })
-    // const order = {
-    //   ingredients: this.state.ingredients,
-    //   price: this.state.totalPrice,
-    //   customer: {
-    //     name: "Daniel Zucchi",
-    //     address: {
-    //       street: "123 Test Street",
-    //       postcode: "A1 2B",
-    //       country: "UK"
-    //     },
-    //     email: "test@test.com"
-    //   },
-    //   deliveryMethod: "Fast"
-    // }
-    // axios
-    //   .post("/orders.json", order)
-    //   .then(res => {
-    //     this.setState({ loading: false, purchasing: false })
-    //     console.log(res)
-    //   })
-    //   .catch(err => {
-    //     this.setState({ loading: false, purchasing: false })
-    //     console.log(err)
-    //   })
-
     const queryParams = []
     for (let i in this.state.ingredients) {
-      queryParams.push(encodeURIComponent(i) + "=" + encodeURIComponent(this.state.ingredients[i]))
+      queryParams.push(
+        encodeURIComponent(i) +
+          "=" +
+          encodeURIComponent(this.state.ingredients[i])
+      )
     }
-
+    queryParams.push("price=" + this.state.totalPrice)
     const queryString = queryParams.join("&")
 
     this.props.history.push({
@@ -177,8 +153,7 @@ class BurgerBuilder extends Component {
       <Aux>
         <Modal
           show={this.state.purchasing}
-          modalClosed={this.purchaseCancelHandler}
-        >
+          modalClosed={this.purchaseCancelHandler}>
           {orderSummary}
         </Modal>
         {burger}
